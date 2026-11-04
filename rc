@@ -6,6 +6,12 @@ export ENV_ROOT
 
 # shell
 export PATH="${ENV_ROOT}/shell:${PATH}"
+case $(uname -s) in
+Linux)
+  export PATH="${ENV_ROOT}/shell-linux:${PATH}"
+  ;;
+esac
+
 
 # term color
 export TERM=xterm-256color
