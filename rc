@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# get env root
+ENV_ROOT="$(realpath "$(dirname "${0}")")"
+export ENV_ROOT
+
+# shell
+export PATH="${ENV_ROOT}/shell:${PATH}"
+
+# term color
+export TERM=xterm-256color
+
+# shellcheck disable=SC2034
+export ZSH_DISABLE_COMPFIX=true
+
+# disable auto update
+DISABLE_AUTO_UPDATE="true"
+
+# timezone
+export TZ=Asia/Shanghai
+
+# Language & LC_CTYPE
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US
+export LC_CTYPE=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export LC_TIME=en_US.UTF-8
+export LC_COLLATE=en_US.UTF-8
+
+# aliases
+alias tmp='cd $(tmpdir-in-home.sh)'
+alias gs="git status -u"
+alias dateh="date +%Y-%m-%d-%H%M%S"
+alias datetag="date '+%Y%m%d%H%M%S'"
+
+# time
+TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
+
+# 检查当前是否处于 tmux 环境，并提示长时间执行的命令建议使用 tmux
+if [[ -z "${TMUX:-}" ]]; then
+  echo -e '\n\n\033[33m[ HINT ] 当前不在 tmux 环境中，长时间执行的命令建议先使用 tmux。\033[0m\n\n'
+else
+  echo -e '\n\n\033[32m[ HINT ] 当前处于 tmux 环境中。\033[0m\n\n'
+fi
