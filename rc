@@ -38,6 +38,18 @@ alias datetag="date '+%Y%m%d%H%M%S'"
 # shellcheck disable=SC2034
 TIMEFMT=$'\n================\nCPU\t%P\nuser\t%*U\nsystem\t%*S\ntotal\t%*E'
 
+# 自动补全
+case $(uname -s) in
+Darwin)
+  if [ -d /opt/homebrew/share/zsh/site-functions ]; then
+    # shellcheck disable=SC2206
+    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+    autoload -Uz compinit
+    compinit
+  fi
+  ;;
+esac
+
 # 检查当前是否处于 tmux 环境，并提示长时间执行的命令建议使用 tmux
 if [[ -z "${TMUX:-}" ]]; then
   echo -e '\n\n\033[33m[ HINT ] 当前不在 tmux 环境中，长时间执行的命令建议先使用 tmux。\033[0m\n\n'
