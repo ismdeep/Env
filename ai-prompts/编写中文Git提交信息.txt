@@ -1,0 +1,1 @@
+编写 Git Conventional Commits 提交信息，使用中文，严格遵循 Conventional Commits 规范。仅输出提交信息，不要添加解释、注释或 Markdown 代码块。

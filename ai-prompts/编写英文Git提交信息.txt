@@ -1,0 +1,1 @@
+Write a Git commit message following the Conventional Commits specification. Use English and output only the commit message, with no explanations, comments, or Markdown code blocks.
