@@ -7,11 +7,23 @@ export ENV_ROOT
 # shell
 export PATH="${ENV_ROOT}/shell:${PATH}"
 case $(uname -s) in
+Darwin)
+  export PATH="${ENV_ROOT}/shell-darwin:${PATH}"
+  export PATH="/opt/homebrew/bin:${PATH}"
+  if [ -f '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' ]; then
+    alias subl="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
+  fi
+  if [ -f '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' ]; then
+    alias google-chrome-stable="'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'"
+  fi
+  ;;
 Linux)
   export PATH="${ENV_ROOT}/shell-linux:${PATH}"
+  if command -v thunar >/dev/null 2>&1; then
+    alias open="thunar"
+  fi
   ;;
 esac
-
 
 # term color
 export TERM=xterm-256color
